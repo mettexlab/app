@@ -103,7 +103,7 @@ fun isNewerVersion(latest: String, current: String): Boolean {
     return false
 }
 
-private const val APK_FILE_NAME = "MettexApp_update.apk"
+private const val APK_FILE_NAME = "Mettex_Intranet_app.apk"
 
 /** Public Downloads folder — visible in Files/Downloads app. */
 fun getApkDestinationFile(): File =

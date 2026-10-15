@@ -130,3 +130,25 @@ To ensure full ISO/IEC 17025 audit compliance, reference material Certificates o
   adb install -r CRM-Reminder-Antibiotics.apk
   ```
 - Or open Android Studio in this folder and deploy to a connected physical device or emulator.
+
+---
+
+## ⚡ Custom PowerShell Command: `git_upload`
+
+A custom automation command has been configured in your PowerShell profile to automate the 5 fundamental Git upload commands in one step:
+
+```powershell
+# Usage in any PowerShell terminal:
+git_upload "your commit message here"
+
+# Or simply:
+git_upload
+```
+
+### The 5 Automated Commands:
+1. `git status` — Inspect working directory status
+2. `git add .` — Stage all new and modified files
+3. `git commit -m "<message>"` — Commit changes with timestamp or custom message
+4. `git branch -M main` — Set default branch to `main`
+5. `git push -u origin main` — Push changes to the remote repository
+

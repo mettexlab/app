@@ -514,6 +514,18 @@ function setupEventListeners() {
   // Excel Export Button
   document.getElementById('btnExportExcel').addEventListener('click', exportToExcel);
 
+  // App Updates Button
+  const btnCheckUpdates = document.getElementById('btnCheckUpdates');
+  if (btnCheckUpdates) {
+    btnCheckUpdates.addEventListener('click', () => {
+      if (window.AndroidBridge && window.AndroidBridge.openUpdateScreen) {
+        window.AndroidBridge.openUpdateScreen();
+      } else {
+        window.open('https://github.com/mettexlab/app/releases', '_blank');
+      }
+    });
+  }
+
   // Print Report Button
   document.getElementById('btnPrintReport').addEventListener('click', () => {
     window.print();

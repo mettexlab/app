@@ -22,6 +22,9 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import java.util.concurrent.TimeUnit
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         ReminderWorker.createNotificationChannel(this)
         scheduleDailyReminderWork()
         checkNotificationPermission()
+        checkAutoUpdate()
 
         webView = WebView(this).apply {
             settings.apply {
@@ -123,6 +127,31 @@ class MainActivity : AppCompatActivity() {
         WorkManager.getInstance(this).enqueue(oneTimeWork)
     }
 
+    private fun checkAutoUpdate() {
+        val prefs = com.coolappstore.everdialer.by.svhp.controller.util.PreferenceManager.getInstance(this)
+        if (prefs.getBoolean(com.coolappstore.everdialer.by.svhp.controller.util.PreferenceManager.KEY_AUTO_UPDATE_CHECK, true)) {
+            kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main).launch {
+                val release = com.coolappstore.everdialer.by.svhp.controller.util.fetchLatestRelease(
+                    com.coolappstore.everdialer.by.svhp.GITHUB_API_RELEASES
+                )
+                if (release != null && com.coolappstore.everdialer.by.svhp.controller.util.isNewerVersion(
+                        release.tagName,
+                        com.coolappstore.everdialer.by.svhp.APP_VERSION
+                    )
+                ) {
+                    androidx.appcompat.app.AlertDialog.Builder(this@MainActivity)
+                        .setTitle("Update Available")
+                        .setMessage("Mettex App V${release.tagName} is available. Would you like to view update details?")
+                        .setPositiveButton("View Update") { _, _ ->
+                            startActivity(Intent(this@MainActivity, UpdatesActivity::class.java))
+                        }
+                        .setNegativeButton("Later", null)
+                        .show()
+                }
+            }
+        }
+    }
+
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (webView.canGoBack()) {
@@ -144,5 +173,13 @@ class MainActivity : AppCompatActivity() {
         fun triggerNativeCheck() {
             triggerImmediateCheck()
         }
+
+        @JavascriptInterface
+        fun openUpdateScreen() {
+            runOnUiThread {
+                startActivity(Intent(this@MainActivity, UpdatesActivity::class.java))
+            }
+        }
     }
 }
+

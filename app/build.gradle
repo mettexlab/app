@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'org.jetbrains.kotlin.plugin.compose'
 }
 
 android {
@@ -34,11 +35,17 @@ android {
     kotlin {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+            freeCompilerArgs.addAll(
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3ExpressiveApi",
+                "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+            )
         }
     }
 
     buildFeatures {
         viewBinding false
+        compose true
+        buildConfig true
     }
 }
 
@@ -47,4 +54,14 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.work:work-runtime-ktx:2.10.0'
+
+    implementation platform('androidx.compose:compose-bom:2025.12.01')
+    implementation 'androidx.compose.ui:ui'
+    implementation 'androidx.compose.ui:ui-graphics'
+    implementation 'androidx.compose.material3:material3'
+    implementation 'androidx.compose.material:material-icons-extended'
+    implementation 'androidx.activity:activity-compose:1.10.1'
+    implementation 'androidx.compose.foundation:foundation'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.7'
 }
+

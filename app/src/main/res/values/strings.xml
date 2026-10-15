@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CRM Reminder</string>
+    <string name="notification_channel_name">CRM Expiry Reminders</string>
+    <string name="notification_channel_desc">Daily alerts for antibiotics expiring within 1 month</string>
+</resources>

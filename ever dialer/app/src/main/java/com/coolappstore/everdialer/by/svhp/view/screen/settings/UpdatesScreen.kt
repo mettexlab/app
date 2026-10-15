@@ -475,7 +475,7 @@ private fun ExpressiveUpdateHeroCard(checkState: CheckState) {
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
-                    text = "EVER DIALER",
+                    text = "METTEX APP",
                     style = MaterialTheme.typography.labelSmall,
                     color = tagColor,
                     fontWeight = FontWeight.Bold,
@@ -493,12 +493,12 @@ private fun ExpressiveUpdateHeroCard(checkState: CheckState) {
                     val (title, subtitle) = when (state) {
                         is CheckState.Checking -> "Checking for updates…" to "Connecting to release repository"
                         is CheckState.Done -> if (state.isNewer && state.latest != null) {
-                            "Update Available!" to "Version v${state.latest.tagName} is ready to download"
+                            "Update Available!" to "Version V${state.latest.tagName} is ready to download"
                         } else {
-                            "You're Up to Date" to "Ever Dialer v$APP_VERSION is the latest version"
+                            "You're Up to Date" to "Mettex App V$APP_VERSION is the latest version"
                         }
                         is CheckState.Failed -> "Update Check Failed" to "Could not connect to release server"
-                        else -> "Ever Dialer Updates" to "Current installed build v$APP_VERSION"
+                        else -> "Mettex App Updates" to "Current installed build V$APP_VERSION"
                     }
 
                     Column(verticalArrangement = Arrangement.spacedBy(3.dp)) {
@@ -968,7 +968,7 @@ private fun ExpressiveReleaseNotesCard(
                                 )
 
                                 Text(
-                                    "There are no pending updates. You're enjoying the most recent version of Ever Dialer.",
+                                    "There are no pending updates. You're enjoying the most recent version of Mettex App.",
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -1419,9 +1419,9 @@ private fun PermissionToDownloadDialog(
         text = {
             Text(
                 if (readyToInstall)
-                    "Ever Dialer v$latestVersion has already been downloaded. Would you like to install it now?"
+                    "Mettex App V$latestVersion has already been downloaded. Would you like to install it now?"
                 else
-                    "Ever Dialer v$latestVersion is available (you have v$currentVersion). The APK will be downloaded to your Downloads folder."
+                    "Mettex App V$latestVersion is available (you have V$currentVersion). The APK will be downloaded to your Downloads folder."
             )
         },
         confirmButton = {

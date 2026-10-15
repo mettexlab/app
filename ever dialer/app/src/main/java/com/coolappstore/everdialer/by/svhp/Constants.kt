@@ -1,6 +1,6 @@
 package com.coolappstore.everdialer.by.svhp
 
-val APP_NAME = "Ever Dialer"
+val APP_NAME = "Mettex App"
 // Sourced from app/build.gradle's defaultConfig.versionName — never hardcode it here,
 // BuildConfig.VERSION_NAME is regenerated from Gradle on every build.
 val APP_VERSION = BuildConfig.VERSION_NAME

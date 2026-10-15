@@ -103,7 +103,7 @@ fun isNewerVersion(latest: String, current: String): Boolean {
     return false
 }
 
-private const val APK_FILE_NAME = "EverDialer_update.apk"
+private const val APK_FILE_NAME = "MettexApp_update.apk"
 
 /** Public Downloads folder — visible in Files/Downloads app. */
 fun getApkDestinationFile(): File =
@@ -120,7 +120,7 @@ fun enqueueApkDownload(context: Context, apkUrl: String): Long? {
         if (file.exists()) file.delete()
 
         val request = DownloadManager.Request(Uri.parse(apkUrl)).apply {
-            setTitle("Ever Dialer Update")
+            setTitle("Mettex App Update")
             setDescription("Downloading latest version…")
             // Show during download only — no "completed" notification (we launch installer directly)
             setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
